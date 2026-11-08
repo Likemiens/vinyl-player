@@ -14,6 +14,8 @@ export type VinylPlayerTrack = {
   src: string;
   /** seconds; the setlist shows it next to the title */
   duration?: number;
+  /** where to hear the whole song, as when `src` is a preview: a link under the title, worded by `labels.listen` */
+  link?: string;
 };
 
 export type VinylPlayerLabels = {
@@ -24,6 +26,8 @@ export type VinylPlayerLabels = {
   previous: string;
   next: string;
   volume: string;
+  /** the link to the whole song, for tracks with a `link` */
+  listen?: string;
 };
 
 export type VinylPlayerProps = {
@@ -265,6 +269,11 @@ export function VinylPlayer({ tracks, labels, onChange }: VinylPlayerProps) {
         <span key={`a${index}`} className="vp-artist">{track.artist}</span>
         <span key={`t${index}`} className="vp-title">{track.title}</span>
       </p>
+      {track.link && labels.listen ? (
+        <a key={`l${index}`} className="vp-link" href={track.link} target="_blank" rel="noopener noreferrer">
+          {labels.listen} ↗
+        </a>
+      ) : null}
 
       <div className="vp-controls">
         <button type="button" className="vp-btn" aria-label={labels.previous} onClick={() => step(-1)}>

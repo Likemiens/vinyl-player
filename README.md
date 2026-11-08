@@ -31,6 +31,7 @@ It is a React component in two files. It plays the files you give it: the songs,
 - **The song's cover on the label.** Printed with a ring, the artist and title along the edge, and 33⅓. Pick another song while it plays and the record dips into the sleeve and comes out with the new label.
 - **A setlist that follows.** The highlight glides to the song that is on and fills as it plays; bars dance over its thumbnail. The next song starts when one ends.
 - **A matte sleeve.** A fine grain over the print and a light edge, no gloss to fight the art.
+- **Previews welcome.** Give a song a `link` and a quiet "listen to the whole song" link stands under its title: play a store's 30-second previews and send people to the rest.
 - **Volume in the hand.** A slider of its own: its knob is taken with its offset and never jumps. On iOS the volume belongs to the phone's buttons, so there is no slider.
 - **Keyboard and screen readers.** The cover, the buttons and the songs are buttons; the volume is a slider. Every word comes from you.
 - **Light.** No dependencies besides React. It respects "reduce motion": the record neither spins nor smears.
@@ -90,10 +91,11 @@ export function Records() {
 | `cover` | `string` | a square image: the sleeve, and the label of the record |
 | `src` | `string` | the audio file |
 | `duration` | `number`, optional | seconds, shown in the setlist |
+| `link` | `string`, optional | where to hear the whole song, when `src` is a preview: a link under the title |
 
 ### Labels
 
-All of them are required: `setlist` names the list for screen readers, `play` and `pause` name the cover and the play button, `previous` and `next` the buttons around it, `volume` the slider.
+`setlist` names the list for screen readers, `play` and `pause` name the cover and the play button, `previous` and `next` the buttons around it, `volume` the slider. These are required. `listen` is the words of the link to the whole song, such as "Listen on Apple Music"; without it no link is shown.
 
 ## Callbacks
 

@@ -302,6 +302,31 @@
   line-height: 20px;
 }
 
+/* Where to hear the whole song: quiet, under the title, and big enough for a finger. */
+.vp-link {
+  position: relative;
+  margin-top: 2px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: var(--vp-quiet);
+  font-size: 13px;
+  line-height: 18px;
+  text-decoration: none;
+  transition: color 150ms ease;
+  animation: vp-rise 420ms var(--vp-ease) both;
+}
+
+.vp-link::after {
+  content: "";
+  position: absolute;
+  inset: -12px 0;
+}
+
+.vp-link:focus-visible {
+  outline: 2px solid var(--vp-focus);
+  outline-offset: 2px;
+}
+
 @keyframes vp-rise {
   from {
     opacity: 0;
@@ -573,7 +598,8 @@
 
 @media (hover: hover) and (pointer: fine) {
   .vp-btn:hover,
-  .vp-volume:hover {
+  .vp-volume:hover,
+  .vp-link:hover {
     color: var(--vp-ink);
   }
 
@@ -600,7 +626,8 @@
     display: none;
   }
 
-  .vp-meta > span {
+  .vp-meta > span,
+  .vp-link {
     animation-name: vp-fade;
   }
 

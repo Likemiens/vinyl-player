@@ -8,6 +8,8 @@ export type VinylPlayerTrack = {
     src: string;
     /** seconds; the setlist shows it next to the title */
     duration?: number;
+    /** where to hear the whole song, as when `src` is a preview: a link under the title, worded by `labels.listen` */
+    link?: string;
 };
 export type VinylPlayerLabels = {
     /** the name of the list of songs */
@@ -17,6 +19,8 @@ export type VinylPlayerLabels = {
     previous: string;
     next: string;
     volume: string;
+    /** the link to the whole song, for tracks with a `link` */
+    listen?: string;
 };
 export type VinylPlayerProps = {
     tracks: VinylPlayerTrack[];

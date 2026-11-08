@@ -12,13 +12,13 @@
 import { VinylPlayer, type VinylPlayerLabels, type VinylPlayerTrack } from "@likemiens/vinyl-player";
 
 <VinylPlayer
-  tracks={songs}   // required: VinylPlayerTrack[] — { title, artist, cover, src, duration? }
-  labels={labels}  // required: VinylPlayerLabels, 6 strings
+  tracks={songs}   // required: VinylPlayerTrack[] — { title, artist, cover, src, duration?, link? }
+  labels={labels}  // required: VinylPlayerLabels, 6 strings and an optional `listen` for the link
   onChange={({ index, playing }) => {}} // the song changed, or it started or stopped playing
 />
 ```
 
-Labels: `setlist play pause previous next volume`. Colours and sizes: `--vp-ink --vp-quiet --vp-surface --vp-line --vp-focus --vp-size --vp-radius --vp-peek --vp-out --vp-label --vp-grain`; the player declares them on `.vp`, so set them with a more specific selector, such as `.records .vp`.
+Labels: `setlist play pause previous next volume`, and `listen` (optional): with it, a track's `link` shows under the title as a link to the whole song, which is what a store's previews ask for. Colours and sizes: `--vp-ink --vp-quiet --vp-surface --vp-line --vp-focus --vp-size --vp-radius --vp-peek --vp-out --vp-label --vp-grain`; the player declares them on `.vp`, so set them with a more specific selector, such as `.records .vp`.
 
 ## Gotchas
 

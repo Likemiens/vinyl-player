@@ -1,6 +1,6 @@
 {
   "name": "@likemiens/vinyl-player",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A music player as a record sleeve, as a React component: press the cover and the vinyl slides out and spins with the song's cover on its label, with a setlist and a volume slider.",
   "keywords": [
     "react",

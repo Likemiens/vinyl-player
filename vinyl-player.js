@@ -199,6 +199,10 @@ function VinylPlayer({ tracks, labels, onChange }) {
           /* @__PURE__ */ jsx("span", { className: "vp-artist", children: track.artist }, `a${index}`),
           /* @__PURE__ */ jsx("span", { className: "vp-title", children: track.title }, `t${index}`)
         ] }),
+        track.link && labels.listen ? /* @__PURE__ */ jsxs("a", { className: "vp-link", href: track.link, target: "_blank", rel: "noopener noreferrer", children: [
+          labels.listen,
+          " \u2197"
+        ] }, `l${index}`) : null,
         /* @__PURE__ */ jsxs("div", { className: "vp-controls", children: [
           /* @__PURE__ */ jsx("button", { type: "button", className: "vp-btn", "aria-label": labels.previous, onClick: () => step(-1), children: icons.previous }),
           /* @__PURE__ */ jsx("button", { type: "button", className: "vp-btn vp-play", "aria-label": playing ? labels.pause : labels.play, onClick: toggle, children: playing ? icons.pause : icons.play }),
