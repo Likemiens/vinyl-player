@@ -1,0 +1,54 @@
+{
+  "name": "@likemiens/vinyl-player",
+  "version": "1.0.0",
+  "description": "A music player as a record sleeve, as a React component: press the cover and the vinyl slides out and spins with the song's cover on its label, with a setlist and a volume slider.",
+  "keywords": [
+    "react",
+    "react-component",
+    "music-player",
+    "audio-player",
+    "vinyl",
+    "record",
+    "playlist",
+    "setlist",
+    "skeuomorphic"
+  ],
+  "homepage": "https://likemiens.com/ui/vinyl-player",
+  "bugs": {
+    "url": "https://github.com/Likemiens/vinyl-player/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Likemiens/vinyl-player.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Likemiens",
+    "url": "https://github.com/Likemiens"
+  },
+  "type": "module",
+  "main": "./vinyl-player.js",
+  "files": [
+    "vinyl-player.js",
+    "vinyl-player.d.ts",
+    "vinyl-player.css"
+  ],
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "module": "./vinyl-player.js",
+  "types": "./vinyl-player.d.ts",
+  "exports": {
+    ".": {
+      "types": "./vinyl-player.d.ts",
+      "import": "./vinyl-player.js"
+    },
+    "./vinyl-player.css": "./vinyl-player.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
