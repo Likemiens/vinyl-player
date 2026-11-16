@@ -31,7 +31,7 @@ It is a React component in two files. It plays the files you give it: the songs,
 - **The song's cover on the label.** Printed with a ring, the artist and title along the edge, and 33⅓. Pick another song while it plays and the record dips into the sleeve and comes out with the new label.
 - **A setlist that follows.** The highlight glides to the song that is on and fills as it plays; bars dance over its thumbnail. The next song starts when one ends.
 - **A matte sleeve.** A fine grain over the print and a light edge, no gloss to fight the art.
-- **Previews welcome.** Give a song a `link` and a quiet "listen to the whole song" link stands under its title: play a store's 30-second previews and send people to the rest.
+- **Apple Music in a few lines.** Give a song a `link` and a quiet "listen to the whole song" link stands under its title: play Apple Music's 30-second previews, with no files of your own, and send people to the rest.
 - **Volume in the hand.** A slider of its own: its knob is taken with its offset and never jumps. On iOS the volume belongs to the phone's buttons, so there is no slider.
 - **Keyboard and screen readers.** The cover, the buttons and the songs are buttons; the volume is a slider. Every word comes from you.
 - **Light.** No dependencies besides React. It respects "reduce motion": the record neither spins nor smears.
@@ -70,7 +70,31 @@ export function Records() {
 }
 ```
 
-[example.tsx](example.tsx) is a complete version.
+[example.tsx](example.tsx) is a complete version that takes its songs from Apple Music.
+
+## Songs from Apple Music
+
+No files of your own? Apple's catalogue has a 30-second preview of almost any song, with its artwork and a link to the whole of it. The [iTunes Search API](https://performance-partners.apple.com/search-api) answers any page, so the player can take songs straight from there, and each one links back to Apple Music, as Apple asks. Nothing to host:
+
+```tsx
+async function fromAppleMusic(term: string) {
+  const query = new URLSearchParams({ term, entity: "song", limit: "1" });
+  const [song] = (await (await fetch(`https://itunes.apple.com/search?${query}`)).json()).results;
+  return {
+    title: song.trackName,
+    artist: song.artistName,
+    cover: song.artworkUrl100.replace("100x100bb", "600x600bb"),
+    src: song.previewUrl,   // 30 seconds, streamed from Apple
+    link: song.trackViewUrl, // the whole song on Apple Music
+  };
+}
+
+const tracks = await Promise.all(["Avicii Levels", "Weezer Say It Ain't So"].map(fromAppleMusic));
+
+<VinylPlayer tracks={tracks} labels={{ ...labels, listen: "Listen on Apple Music" }} />;
+```
+
+The [live demo](https://likemiens.com/ui/vinyl-player) plays its author's favourite songs this way.
 
 > [!NOTE]
 > **Next.js:** `vinyl-player.tsx` already starts with `"use client"`. If you pass `onChange`, render it from a client component.
@@ -137,7 +161,7 @@ The record comes out to the right of the cover by `--vp-out` of its width, so le
 ```
 vinyl-player.tsx   the component and its types
 vinyl-player.css   its styles and colours
-example.tsx        a complete usage, to start from
+example.tsx        a complete usage with songs from Apple Music, to start from
 AGENTS.md          notes for coding agents
 media/             the cover, the preview and the video
 ```

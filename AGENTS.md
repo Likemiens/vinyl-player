@@ -20,6 +20,10 @@ import { VinylPlayer, type VinylPlayerLabels, type VinylPlayerTrack } from "@lik
 
 Labels: `setlist play pause previous next volume`, and `listen` (optional): with it, a track's `link` shows under the title as a link to the whole song, which is what a store's previews ask for. Colours and sizes: `--vp-ink --vp-quiet --vp-surface --vp-line --vp-focus --vp-size --vp-radius --vp-peek --vp-out --vp-label --vp-grain`; the player declares them on `.vp`, so set them with a more specific selector, such as `.records .vp`.
 
+## Recipe: songs from Apple Music
+
+When the app has no audio files of its own, take Apple's 30-second previews: `GET https://itunes.apple.com/search?term=<artist and song>&entity=song&limit=1` answers any origin, and each result maps to a track as `{ title: trackName, artist: artistName, cover: artworkUrl100 with 100x100bb → 600x600bb, src: previewUrl, link: trackViewUrl }`. Pass `labels.listen` ("Listen on Apple Music") so every song links back to the whole of it. `example.tsx` does exactly this. Mount the player once the tracks have arrived: it reads them on mount.
+
 ## Gotchas
 
 - **It keeps the song and the play state itself.** There is no prop to start it: browsers allow sound only after a press, and the player starts it inside that press. `onChange` tells you what happened.
