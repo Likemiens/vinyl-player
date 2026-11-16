@@ -44,6 +44,12 @@ Install it:
 npm i @likemiens/vinyl-player
 ```
 
+Or straight from this repository, under the same name:
+
+```bash
+npm i github:Likemiens/vinyl-player
+```
+
 Or copy `vinyl-player.tsx` and `vinyl-player.css` into your project, side by side, and import from `./vinyl-player`.
 
 Then give it the songs and its words:
